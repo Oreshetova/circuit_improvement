@@ -127,7 +127,8 @@ class Circuit:
                 continue
             operation = (graph.nodes[gate]['label']).split()[2]
             bit_operation = list(circuit.gate_types.keys())[list(circuit.gate_types.values()).index(operation)]
-            circuit.gates[gate] = ((graph.nodes[gate]['label']).split()[1], (graph.nodes[gate]['label']).split()[3], bit_operation)
+            circuit.gates[gate] = (
+            (graph.nodes[gate]['label']).split()[1], (graph.nodes[gate]['label']).split()[3], bit_operation)
 
         return circuit
 
@@ -229,7 +230,9 @@ class Circuit:
             for gate in topological_ordering:
                 if gate in self.input_labels:
                     continue
-                assert gate in self.gates
+                if gate not in self.gates:
+                    print(f"KEK {gate};\n {self};")
+                    assert False
                 f, s = self.gates[gate][0], self.gates[gate][1]
                 assert len(truth_tables[f]) > len(truth_tables[gate]) and len(truth_tables[s]) > len(truth_tables[gate])
                 fv, sv = truth_tables[f][-1], truth_tables[s][-1]

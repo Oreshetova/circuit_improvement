@@ -80,6 +80,30 @@ def add_sum5_suboptimal(circuit, input_labels):
     return w0, w1, w2
 
 
+def add_sum5_changed(circuit, input_labels):
+    assert len(input_labels) == 5
+    for input_label in input_labels:
+        assert input_label in circuit.input_labels or input_label in circuit.gates
+
+    [s13, s14, s15, s16, s17] = input_labels
+    q1 = circuit.add_gate(s16, s17, '0001')
+    q7 = circuit.add_gate(s14, s13, '1001')
+    q8 = circuit.add_gate(s17, s16, '1001')
+    q9 = circuit.add_gate(s15, q7, '0110')
+    q10 = circuit.add_gate(s15, q9, '0001')
+    q4 = circuit.add_gate(s13, q7, '0001')
+    q5 = circuit.add_gate(q8, q9, '0110')
+    q11 = circuit.add_gate(q5, q9, '1000')
+    q12 = circuit.add_gate(q1, q11, '0110')
+    q3 = circuit.add_gate(q10, q4, '1000')
+    q2 = circuit.add_gate(q12, q3, '1001')
+    q6 = circuit.add_gate(q3, q12, '0100')
+
+    check_sum_circuit(circuit)
+
+    return q5, q2, q6
+
+
 def add_sum6(circuit, input_labels):
     assert len(input_labels) == 6
     for input_label in input_labels:

@@ -12,7 +12,10 @@ def find_circuit(input_labels, gates_count, in_tt, out_tt, shift=0):
     gates = list(range(number_of_input_gates + gates_count))
     outputs = list(range(number_of_outputs))
 
-    assert all(str(gate) not in input_labels for gate in internal_gates)
+    if not all(str(gate) not in input_labels for gate in internal_gates):
+        print(input_labels)
+        print(internal_gates)
+        assert False
 
     def variable_number(name):
         if name in variables:

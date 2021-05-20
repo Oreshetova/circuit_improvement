@@ -57,6 +57,8 @@ def add_th2_4(circuit, input_labels):
     z4 = circuit.add_gate(z2, x3, '0111')
 
     z5 = circuit.add_gate(z4, x4, '0001')
+    q = circuit.add_gate(z4, z5, '0001')
+    qq = circuit.add_gate(q, z5, '0001')
 
     z6 = circuit.add_gate(z1, z3, '0111')
     z7 = circuit.add_gate(z5, z6, '0111')
