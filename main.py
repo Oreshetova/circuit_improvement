@@ -69,8 +69,8 @@ if __name__ == '__main__':
         c = Circuit(fn='sum/sum3_size5').draw('sum3_size5')
 
     elif command == 'ch':
-        imp_circuit = run_imp_circuit(add_sum5_suboptimal, 5, subcircuit_size=5, connected=True)
-        # imp_circuit = improve_circuit_2(imp_circuit,
+        imp_circuit = run_imp_circuit(add_sum15_51, 15, subcircuit_size=5, connected=True)
+        # imp_circuit = improve_circuit_2(imp_circuit,k
         #                               subcircuit_size=4,
         #                               connected=True)
         print(imp_circuit)
